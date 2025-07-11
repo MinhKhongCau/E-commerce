@@ -1,4 +1,4 @@
-import BasicLayout from "../layout/BasicLayout.jsx";
+import DefaultLayout from "../layout/DefaultLayout.jsx";
 
 const ProductDisplay = () => {
     // const [products, setProducts] = useState([]);

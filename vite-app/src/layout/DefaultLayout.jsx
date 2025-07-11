@@ -3,12 +3,12 @@ import Header from '../components/Header.jsx'
 import Content from '../components/Content.jsx'
 import Footer from '../components/Footer.jsx'
 
-const BasicLayout = ({products}) => {
+const DefaultLayout = () => {
     return <>
         <Header/>
-        <Content products = {products}/>
+        <Content/>
         <Footer/>
     </>
 }
 
-export default BasicLayout;
+export default DefaultLayout;
