@@ -15,8 +15,8 @@ const Products = ({products, priceDropdown, setPriceDropdown}) => {
         </div>
 
         <div className={'grid grid-cols-2 gap-3 bg-white p-4 m-2 xl:grid-cols-6 md:grid-cols-4 sm:grid-cols-2'}>
-            {products.map((product) => (
-                <ProductItem product = {product}/>
+            {products.map((product,index) => (
+                <ProductItem key={index} product = {product}/>
             ))}
         </div>
     </div>

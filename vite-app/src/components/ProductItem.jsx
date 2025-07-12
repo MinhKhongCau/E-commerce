@@ -11,9 +11,9 @@ const ProductItem = ({product}) => {
             onClick={() => setIsOpen(true)}>
             <div className={'w-full min-h-32 max-h-64 overflow-hidden'}>
                 <ProductPhoto product={product}/>
-                <Title title={product.title}/>
             </div>
-            <div className={'mt-auto'}>
+            <div className={'mt-auto w-full'}>
+                <Title title={product.title}/>
                 <div className={'text-black p-3 flex justify-between item-center text-sm w-full'}>
                     <p className={'text-orange-500'}>đ {product.price}</p>
                     <span className={''}>Sold {product.sold}</span>

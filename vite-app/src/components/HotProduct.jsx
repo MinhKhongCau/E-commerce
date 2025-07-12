@@ -5,8 +5,8 @@ const HotProduct = ({
         <h2 className={'w-full m-6 p-4 text-orange-500 font-bold text-center text-3xl'}>Hot products</h2>
 
         <div className={'grid grid-cols-4 xl:grid-cols-8 w-full'}>
-            {hotProducts.map((product) => (
-                <div className={'w-full rounded overflow-hidden shadow-lg m-1 p-2'}>
+            {hotProducts.map((product, index) => (
+                <div key={index} className={'w-full rounded overflow-hidden shadow-lg m-1 p-2'}>
                     <img
                         src={product.image}
                         alt={product.title}
