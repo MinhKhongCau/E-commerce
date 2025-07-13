@@ -12,6 +12,13 @@ A simple e-commerce web application built with **React (Vite)** for the frontend
 - 🧪 **Libraries**: `axios`, `react-icons`, `react-loading-skeleton`, `react-router-dom`
 - 🐳 **Containerized with Docker**
 
+📸 UI Preview
+
+<img width="1822" height="926" alt="Screenshot from 2025-07-14 01-53-19" src="https://github.com/user-attachments/assets/b25b9784-7dfe-4020-8bda-3e5a8072f2dd" />
+
+Link youtube preview: https://youtu.be/V9NbxTEPsik
+
+
 ---
 
 ## 🚀 Getting Started
@@ -23,9 +30,10 @@ docker-compose up --build
 ```
 
 Frontend will run on: http://localhost:5173
+
 Backend will run on: http://localhost:8000
 
-2. Run Manually (Dev Mode)
+###2. Run Manually (Dev Mode)
 Frontend (Vite)
 ```
 cd vite-app
@@ -100,10 +108,6 @@ python app.py
     Use docker-compose to run both backend and frontend in sync.
 
     Environment variables and ports are managed in docker-compose.yml.
-
-📸 UI Preview
-
-    https://youtu.be/V9NbxTEPsik
 
 📜 License
 
