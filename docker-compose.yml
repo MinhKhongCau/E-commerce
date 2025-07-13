@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./vite-app
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    hostname: viteapp
+    volumes:
+    - ./vite-app:/app
+    - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./python-app
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    hostname: flaskapp
+    volumes:
+      - ./python-app:/app
+    command: python server.py
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

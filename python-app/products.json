@@ -23,7 +23,7 @@
         "voucher": "10%",
         "description": "Compact voice changer that connects to your smartphone, great for pranks and privacy.",
         "favorite": true,
-        "looking": false
+        "looking": true
     },
     {
         "productCode": "P003",
@@ -35,7 +35,7 @@
         "qualified": "Official Store",
         "voucher": "20%",
         "description": "Durable and lightweight plastic chair, ideal for both home and outdoor settings.",
-        "favorite": true,
+        "favorite": false,
         "looking": true
     },
     {
@@ -87,7 +87,7 @@
         "qualified": "Mall",
         "voucher": "12%",
         "description": "Rechargeable electric toothbrush with soft bristles and multiple cleaning modes.",
-        "favorite": false,
+        "favorite": true,
         "looking": true
     },
     {
@@ -113,7 +113,7 @@
         "qualified": "Mall",
         "voucher": "25%",
         "description": "Breathable running shoes with comfortable cushioning and anti-slip sole.",
-        "favorite": false,
+        "favorite": true,
         "looking": true
     },
     {
@@ -126,7 +126,7 @@
         "qualified": "Verified",
         "voucher": "10%",
         "description": "Spacious and stylish backpack with laptop compartment and waterproof material.",
-        "favorite": false,
+        "favorite": true,
         "looking": true
     },
     {

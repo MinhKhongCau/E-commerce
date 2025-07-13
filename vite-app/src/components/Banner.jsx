@@ -6,7 +6,7 @@ const Banner = () => {
         {
             id: 1,
             title: 'Item 1',
-            img: 'https://www.droppii.com/wp-content/uploads/2023/04/kich-thuoc-banner-Shopee.jpg'
+            img: 'https://dientuungdung.vn/stores/news_dataimages/2025/012025/11/14/4-su-kien-151-tet-sale-freeship20250111142555.jpg?rt=20250111143014'
         },
         {
             id: 2,
@@ -16,7 +16,7 @@ const Banner = () => {
         {
             id: 3,
             title: 'Item 3',
-            img: 'https://atpsoftware.vn/wp-content/uploads//2022/03/banner-shopee-0.png'
+            img: 'https://wdd.my/wp-content/uploads/2024/01/inside-shopee-growth-setback-768-socmed.png'
         }
     ]);
     // Time for Banner

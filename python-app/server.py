@@ -5,7 +5,9 @@ from service import getAllProduct, getAllProductByAsc, getAllProductByDesc, getP
 import chatbot
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, supports_credentials=True,
+     origins=["http://viteapp:5173"],
+     allow_headers=["Content-Type", "Authorization"])
 
 @app.route('/api/products', methods=['GET'])
 def handleGetProducts():
