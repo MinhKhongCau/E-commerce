@@ -1,8 +1,10 @@
+import SectionTitle from "./SectionTitle";
+
 const HotProduct = ({
     hotProducts
                     }) => {
     return <div className={'w-full'} >
-        <h2 className={'w-full m-6 p-4 text-orange-500 font-bold text-center text-3xl'}>Hot products</h2>
+        <SectionTitle text={'Hot products'}/>
 
         <div className={'grid grid-cols-4 xl:grid-cols-8 w-full'}>
             {hotProducts.map((product, index) => (

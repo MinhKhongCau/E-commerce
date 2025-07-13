@@ -3,6 +3,7 @@ import { LuShoppingCart } from "react-icons/lu";
 import Search from "./Search.jsx";
 import Cart from "./Cart.jsx";
 import Logo from "./Logo.jsx";
+import FavoriteProducts from './FavoriteProducts.jsx'
 
 const Header = () => {
     return (
@@ -11,6 +12,7 @@ const Header = () => {
                 <Logo/>
                 <Search/>
                 <Cart/>
+                <FavoriteProducts/>
             </div>
         </div>
     );

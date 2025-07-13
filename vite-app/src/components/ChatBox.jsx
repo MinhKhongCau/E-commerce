@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FaCaretSquareDown } from "react-icons/fa";
 import { IoMdChatboxes } from "react-icons/io";
+import Skeleton from './Skeleton';
 import axios from 'axios';
+import {
+    chatWithBot
+} from '../service/GetData'
 
 const ChatBox = ({ shopAssistants }) => {
     const [assistant, setAssistant] = useState({
@@ -11,44 +15,45 @@ const ChatBox = ({ shopAssistants }) => {
 
     const [openChatBox, setOpenChatBox] = useState(false)
     const [userMessage, setUserMessage] = useState('')
+    const [loading, setLoading] = useState(false)
+    const textAreaRef = useRef(null)
 
-    const handleSend = () => {
+    const handleSend = async () => {
         if (userMessage.trim() === '') return;
 
-        // Gửi tin nhắn của người dùng
+        // Send message to chatbot
         setAssistant(prev => ({
             ...prev,
             messages: [...prev.messages, { sender: 'user', text: userMessage }]
         }));
 
+        const messageToSend = userMessage;
         setUserMessage('');
+        setLoading(true);
 
-        // axios({
-        //     url: 'https://jsonplaceholder.typicode.com/users',
-        //     method: 'GET'
-        // })
-        // .then((res) => {
-        //     console.log(res.data)
-        // })
-        // .catch(() => {
-        //     console.error('Oops, there is an error')
-        // })
+        try {
+            const botReply = await chatWithBot(messageToSend);
+            setAssistant(prev => ({
+                ...prev,
+                messages: [...prev.messages, { sender: 'assistant', text: botReply }]
+            }));
+        } catch (error) {
+            console.error("Error when call chatbot:", error);
+            setAssistant(prev => ({
+                ...prev,
+                messages: [...prev.messages, { sender: 'assistant', text: "Sorry, send error" }]
+            }));
+        } finally {
+            setLoading(false);
+        }
+    };
 
-        axios({
-            url: `/api/chatbot?message=${userMessage}`,
-            method: 'GET'
-        })
-            .then((res) => {
-                const botReply = res.data.text;
-                setAssistant(prev => ({
-                    ...prev,
-                    messages: [...prev.messages, { sender: 'assistant', text: botReply }]
-                }));
-            })
-            .catch((err) => {
-                console.error('Error:', err);
-            });
-    }
+    useEffect(() => {
+        if (userMessage === '') {
+            textAreaRef.current.style.height = "10px"
+        }
+        textAreaRef.current.style.height = textAreaRef.current.scrollHeight + 'px';
+    }, [userMessage])
 
     return <>
         <button
@@ -56,7 +61,7 @@ const ChatBox = ({ shopAssistants }) => {
             className={'fixed bottom-0 right-0 bg-orange-500 w-32 h-12 rounded-tl-lg flex justify-center items-center hover:bg-orange-400'}
             onClick={() => setOpenChatBox(true)}
         ><IoMdChatboxes />Chat</button>
-        <div className={`fixed w-3/5 h-3/5 bg-white bottom-0 right-0 rounded ${openChatBox ? 'visible' : 'invisible'}`}>
+        <div className={`fixed w-3/5 h-3/5 xs:w-2/5 bg-white bottom-0 right-0 rounded transition duration-500 ease-in-out ${openChatBox ? 'visible translate-y-0' : 'invisible translate-y-full'}`}>
             <div className={'flex justify-between border-b-2 border-orange-500 shadow'}>
                 <h3 className={'text-orange-500 text-xl px-4 py-2'}>
                     Chat
@@ -95,15 +100,18 @@ const ChatBox = ({ shopAssistants }) => {
                     <div className={'flex-1 overflow-y-auto p-4 space-y-2'}>
                         {assistant.messages.map((msg, index) => (
                             <div key={index} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
-                                <div className={`p-2 my-1 rounded-xl max-w-[70%] text-sm text-black ${msg.sender === 'user' ? 'bg-orange-100 text-right' : 'bg-gray-100 text-left'}`}>
+                                <div className={`p-2 my-1 rounded-xl max-w-[70%] text-sm text-black ${msg.sender === 'user' ? 'bg-orange-100 text-right' : 'bg-gray-100 text-left'}`}
+                                    style={{ whiteSpace: 'pre-wrap' }}>
                                     {msg.text}
                                 </div>
                             </div>
                         ))}
+                        {loading && <Skeleton height={100} />}
                     </div>
 
                     <div className={'border-t flex p-2 shadow'}>
-                        <input
+                        <textarea
+                            ref={textAreaRef}
                             type="text"
                             value={userMessage}
                             onChange={(e) => setUserMessage(e.target.value)}
@@ -112,7 +120,7 @@ const ChatBox = ({ shopAssistants }) => {
                         />
                         <button
                             onClick={handleSend}
-                            className={'bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded'}
+                            className={'bg-orange-500 hover:bg-orange-600 h-10 mt-auto text-white px-4 py-2 rounded'}
                         >
                             Send
                         </button>
